@@ -6,7 +6,7 @@ export const run = {
     owner: true,
     group: true
   },
-  run: async (m, { prefix, command, args }) => {
+  run: async (m, { sock, prefix, command, args }) => {
     const action = (args[0] || command)?.toLowerCase()
     const targetChat = args[1] || m.chat
 
