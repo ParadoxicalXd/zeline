@@ -1,6 +1,6 @@
 export const run = {
   cmd: ['moderation'],
-  hidden: ['gcset', 'groupsettings'],
+ hidden: ['gcset', 'groupsettings', 'antilink'],
   category: 'group',
   settings: {
     group: true,
