@@ -26,7 +26,9 @@ export const run = {
 @group -> group name
 @time -> current time in ${config.tz}`
 
-    if (args.length < 1) {
+    const isCommandMode = validModes.includes(command) || textModes.includes(command)
+
+    if (args.length < 1 && !isCommandMode) {
       let modeList = 'current settings:\n'
 
       for (const mode of validModes) {
@@ -44,8 +46,8 @@ export const run = {
       )
     }
 
-    const modeType = args[0]?.toLowerCase()
-    const action = args[1]?.toLowerCase()
+    const modeType = isCommandMode ? command : args[0]?.toLowerCase()
+    const action = isCommandMode ? args[0]?.toLowerCase() : args[1]?.toLowerCase()
 
     if (validModes.includes(modeType)) {
       if (action === 'on') {
@@ -58,8 +60,12 @@ export const run = {
         return m.reply(`${modeType} mode switched to : *[ off ]*`)
       }
 
+      const usageExample = isCommandMode
+        ? `*${prefix + command} on*\n*${prefix + command} off*`
+        : `*${prefix + command} ${modeType} on*\n*${prefix + command} ${modeType} off*`
+
       return m.reply(
-        `current status of *${modeType}* mode: *${group[modeType] ? 'on' : 'off'}*\n\nchange the status by typing:\n*${prefix + command} ${modeType} on*\n*${prefix + command} ${modeType} off*`
+        `current status of *${modeType}* mode: *${group[modeType] ? 'on' : 'off'}*\n\nchange the status by typing:\n${usageExample}`
       )
     }
 
@@ -79,11 +85,14 @@ export const run = {
       }
 
       if (action === 'text') {
-        const text = args.slice(2).join(' ')
+        const text = isCommandMode ? args.slice(1).join(' ') : args.slice(2).join(' ')
 
         if (!text) {
+          const textExample = isCommandMode
+            ? `${prefix + command} text 👋 welcome @user to @group at @time`
+            : `${prefix + command} ${modeType} text 👋 welcome @user to @group at @time`
           return m.reply(
-            `example:\n${prefix + command} ${modeType} text 👋 welcome @user to @group at @time\n\n${placeholder}`
+            `example:\n${textExample}\n\n${placeholder}`
           )
         }
 
@@ -94,8 +103,12 @@ export const run = {
         )
       }
 
+      const textUsageExample = isCommandMode
+        ? `*${prefix + command} on*\n*${prefix + command} off*\n\nchange text:\n*${prefix + command} text your message*`
+        : `*${prefix + command} ${modeType} on*\n*${prefix + command} ${modeType} off*\n\nchange text:\n*${prefix + command} ${modeType} text your message*`
+
       return m.reply(
-        `current status of *${modeType}* notification: *${group[modeType].enabled ? 'on' : 'off'}*\n\nchange status:\n*${prefix + command} ${modeType} on*\n*${prefix + command} ${modeType} off*\n\nchange text:\n*${prefix + command} ${modeType} text your message*\n\n${placeholder}`
+        `current status of *${modeType}* notification: *${group[modeType].enabled ? 'on' : 'off'}*\n\nchange status:\n${textUsageExample}\n\n${placeholder}`
       )
     }
 
