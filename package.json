@@ -1,11 +1,11 @@
 {
-  "name": "zeline",
+  "name": "Shera",
   "version": "2.0-stable",
   "description": "Modern WhatsApp Bot using Baileys (ESM) with feature-rich automation, media processing, and plugin system",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "pm2 start pm2.config.cjs",
     "dev": "node index.js",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -20,19 +20,19 @@
     "esm"
   ],
   "author": {
-    "name": "skyzxu",
-    "email": "dev@skyzxu.my.id",
-    "url": "https://github.com/itsmekaa"
+    "name": "Paradox",
+    "email": "dev@",
+    "url": "https://github.com/"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/itsmekaa/zeline.git"
+    "url": "git+https://github.com"
   },
   "bugs": {
-    "url": "https://github.com/itsmekaa/zeline/issues"
+    "url": "https://github.com"
   },
-  "homepage": "https://github.com/itsmekaa/zeline#readme",
+  "homepage": "https://github.com",
   "engines": {
     "node": ">=20.18.1"
   },
