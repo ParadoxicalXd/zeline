@@ -4,7 +4,8 @@ export const run = {
     category: 'group',
     settings: {
         group: true,
-        botAdmin: true
+        botAdmin: true,
+        admin: true,
     },
     description: 'get this group invite link',
     run: async (m, { sock }) => {
