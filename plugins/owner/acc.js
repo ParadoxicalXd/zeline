@@ -1,14 +1,24 @@
 export const run = {
-  cmd: ['acc'],
+  cmd: ['acc', 'open', 'close'],
   category: 'owner',
-  description: 'manage group access',
+  description: 'manage group access and open/close group',
   settings: {
     owner: true,
     group: true
   },
   run: async (m, { prefix, command, args }) => {
-    const action = args[0]?.toLowerCase()
+    const action = (args[0] || command)?.toLowerCase()
     const targetChat = args[1] || m.chat
+
+    if (command === 'open' || action === 'open') {
+      await sock.groupSettingUpdate(m.chat, 'not_announcement')
+      return m.reply('group opened.')
+    }
+
+    if (command === 'close' || action === 'close') {
+      await sock.groupSettingUpdate(m.chat, 'announcement')
+      return m.reply('group closed.')
+    }
 
     if (action === 'add') {
       if (global.db.groups[targetChat]?.access) {
