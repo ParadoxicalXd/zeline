@@ -11,15 +11,15 @@ export const run = {
     const action = (args[0] || command)?.toLowerCase()
     const targetChat = args[1] || m.chat
 
-    if (command === 'open' || action === 'open') {
-      await sock.groupSettingUpdate(m.chat, 'not_announcement')
-      return m.reply('group opened.')
-    }
+if (command === 'open' || action === 'open') {
+  await sock.groupSettingUpdate(m.chat, 'not_announcement')
+  return m.reply('🔓 The group has been opened. All members can now send messages.')
+}
 
-    if (command === 'close' || action === 'close') {
-      await sock.groupSettingUpdate(m.chat, 'announcement')
-      return m.reply('group closed.')
-    }
+if (command === 'close' || action === 'close') {
+  await sock.groupSettingUpdate(m.chat, 'announcement')
+  return m.reply('🔒 The group has been closed. Only admins can now send messages.')
+}
 
     if (action === 'add') {
       if (global.db.groups[targetChat]?.access) {
