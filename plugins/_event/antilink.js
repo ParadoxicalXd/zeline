@@ -86,8 +86,8 @@ export const run = {
     const tag = m.sender.split('@')[0]
 
     const typeLabel = isChannelPost
-      ? 'channel posts'
-      : 'channel links'
+      ? 'Channel Posts'
+      : 'Links'
 
     const count = (warnings[m.sender] || 0) + 1
 
