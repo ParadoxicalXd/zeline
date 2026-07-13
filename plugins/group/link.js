@@ -1,5 +1,5 @@
 export const run = {
-    cmd: ['linkgc'],
+    cmd: ['link'],
     hidden: ['getlink'],
     category: 'group',
     settings: {
