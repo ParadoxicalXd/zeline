@@ -4,7 +4,8 @@ export const run = {
   description: 'manage group access and open/close group',
   settings: {
     owner: true,
-    group: true
+    group: true,
+    admin: true
   },
   run: async (m, { sock, prefix, command, args }) => {
     const action = (args[0] || command)?.toLowerCase()
