@@ -1,5 +1,5 @@
 export const run = {
-  cmd: ['acc'],
+  cmd: ['acc', 'open', 'close'],
   category: 'owner',
   description: 'manage group access',
   settings: {
@@ -7,7 +7,7 @@ export const run = {
     group: true
   },
   run: async (m, { prefix, command, args }) => {
-    const action = args[0]?.toLowerCase()
+    const action = args[0]?.toLowerCase() || (command === 'open' ? 'add' : command === 'close' ? 'del' : '')
     const targetChat = args[1] || m.chat
 
     if (action === 'add') {
