@@ -14,8 +14,6 @@ export const handler = async (sock, data) => {
 
       logger(msg)
 
-      if (db.settings.self && !msg.isOwner) return
-
       if (db.settings.accessOnly && !msg.isOwner) {
         if (!msg.isGroup) return
         if (!db.groups[msg.chat]?.access) return
@@ -31,6 +29,8 @@ export const handler = async (sock, data) => {
           if (stop) return
         }
       }
+
+      if (db.settings.self && !msg.isOwner) return
 
       if (!msg.command) return
 
